@@ -17,6 +17,10 @@ jobs:
       with:
         python-version: '3.10'
 
+    - name: Instalar dependencias
+      run: |
+        pip install -r Niveles/4/api/requirements.txt
+
     - name: Entrenar modelo
       run: |
         cd Niveles/4/api
