@@ -1,0 +1,13 @@
+resources:
+  - api-deployment.yaml
+  - script-deployment.yaml
+  - prometheus-deployment.yaml
+  - grafana-deployment.yaml
+
+configMapGenerator:
+  - name: prometheus-config
+    files:
+      - prometheus.yml
+  - name: grafana-config
+    files:
+      - grafana-config/datasources.yaml
