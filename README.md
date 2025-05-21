@@ -99,3 +99,7 @@ kubectl port-forward svc/prometheus 9090:9090
 - Argo CD desplegado en el clúster
 - Acceso a DockerHub y GitHub
 
+![image](https://github.com/user-attachments/assets/4eea16bc-1f6d-466a-9643-d7ced6d3a619)
+
+![image](https://github.com/user-attachments/assets/33635476-8fe8-41ea-bdc8-d2aef5b59124)
+
