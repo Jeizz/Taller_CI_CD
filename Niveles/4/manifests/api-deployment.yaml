@@ -1,37 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: api-inferencia
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api
+      app: api-inferencia
   template:
     metadata:
       labels:
-        app: api
+        app: api-inferencia
     spec:
       containers:
-      - name: api
-        image: jeisonibanez/api:latest  # O el tag que estés usando
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "250m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: api
-spec:
-  type: NodePort  # <-- cambia de ClusterIP (implícito) a NodePort
-  selector:
-    app: api
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    nodePort: 30080  # <-- acceso externo en este puerto
+        - name: api-inferencia
+          image: jeisonaibanez/api:latest
+          ports:
+            - containerPort: 8000
+            - containerPort: 8503
+          imagePullPolicy: Always
+
+
