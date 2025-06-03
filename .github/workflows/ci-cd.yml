@@ -5,28 +5,28 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build-train-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: 📥 Checkout del código
       uses: actions/checkout@v3
 
-    - name: Configurar Python
+    - name: 🐍 Configurar Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    - name: Instalar dependencias
+    - name: 📦 Instalar dependencias
       run: |
         pip install -r Niveles/4/api/requirements.txt
 
-    - name: Entrenar modelo
+    - name: 🧠 Entrenar modelo
       run: |
         cd Niveles/4/api
         python train_model.py
 
-    - name: Login en DockerHub
+    - name: 🔐 Login en DockerHub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: 🐳 Construir y subir imagen de la API
@@ -34,17 +34,13 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/api:latest ./Niveles/4/api
         docker push ${{ secrets.DOCKER_USERNAME }}/api:latest
 
-    - name: 📂 Configurar acceso a Kubernetes
+    - name: ⚙️ Configurar acceso a Kubernetes
       run: |
         mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
+        echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
+        chmod 600 $HOME/.kube/config
 
-    - name: 🚀 Aplicar cambios en Kubernetes
+    - name: 🚀 Aplicar el nuevo deployment
       run: |
-        kubectl apply -f ./Niveles/4/manifests/api-deployment.yaml
-        kubectl apply -f ./Niveles/4/manifests/api-service.yaml
-
-
-    - name: 🔁 Reiniciar el deployment para forzar pull
-      run: |
+        kubectl apply -f Niveles/4/k8s/api-inferencia-deployment.yaml
         kubectl rollout restart deployment api-inferencia
