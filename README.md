@@ -99,7 +99,35 @@ kubectl port-forward svc/prometheus 9090:9090
 - Argo CD desplegado en el clúster
 - Acceso a DockerHub y GitHub
 
+<<<<<<< HEAD
 ![image](https://github.com/user-attachments/assets/4eea16bc-1f6d-466a-9643-d7ced6d3a619)
 
 ![image](https://github.com/user-attachments/assets/33635476-8fe8-41ea-bdc8-d2aef5b59124)
 
+=======
+---
+
+## 📌 Notas
+
+- Agrega tus secretos en GitHub:
+  - `DOCKER_USERNAME`
+  - `DOCKER_PASSWORD`
+- El modelo es simple (regresión lineal) para propósitos educativos.
+- Usa `kubectl get pods` y `kubectl logs` para depurar.
+
+---
+
+## 📷 Screenshots (agrega aquí ejemplos visuales)
+
+- CI/CD corriendo en GitHub Actions
+- API funcionando en `/docs`
+- Métricas visibles en Prometheus
+- Dashboards en Grafana
+
+---
+
+## ✨ Autor
+
+Desarrollado por Jeison Ibañez  
+Proyecto académico para implementación de MLOps y GitOps
+>>>>>>> a663153 (feat: add version v1.0.0)

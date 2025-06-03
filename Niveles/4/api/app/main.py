@@ -24,3 +24,8 @@ def predict(data: InputData):
 @app.get("/metrics")
 def metrics():
     return Response(generate_latest(), media_type="text/plain")
+
+@app.get("/version")
+def get_version():
+    return {"version": "v1.0.0"} 
+
