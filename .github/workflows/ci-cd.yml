@@ -33,8 +33,3 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/api:104dcd3 ./Niveles/4/api
         docker push ${{ secrets.DOCKER_USERNAME }}/api:104dcd3
-
-    - name: 🐳 Construir y subir imagen del LoadTester
-      run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/loadtester:latest ./Niveles/4/loadtester
-        docker push ${{ secrets.DOCKER_USERNAME }}/loadtester:latest
