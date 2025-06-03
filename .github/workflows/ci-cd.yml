@@ -38,12 +38,13 @@ jobs:
       run: |
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
+        mkdir -p ~/.kube
+        echo "${{ secrets.KUBECONFIG_CONTENT }}" > ~/.kube/config
 
     - name: 🚀 Aplicar cambios en Kubernetes
       run: |
         kubectl apply -f ./Niveles/4/manifests/api-deployment.yaml
         kubectl apply -f ./Niveles/4/manifests/api-service.yaml
-
 
     - name: 🔁 Reiniciar el deployment para forzar pull
       run: |
