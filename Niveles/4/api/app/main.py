@@ -27,5 +27,5 @@ def metrics():
 
 @app.get("/version")
 def get_version():
-    return {"version": "v1.0.0"} 
+    return {"version": "v2.0.0"} 
 
