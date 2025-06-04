@@ -43,7 +43,7 @@ jobs:
 
     - name: 🧬 Desplegar en Kubernetes
       run: |
-        kubectl set image deployment/api-inferencia api-inferencia=${{ secrets.DOCKER_USERNAME }}/api:latest
+        kubectl set image deployment/api-inferencia api-inferencia=${{ secrets.DOCKER_USERNAME }}/api:latest || true
 
     # - name: 🚀 Aplicar cambios en Kubernetes
     #   run: |
