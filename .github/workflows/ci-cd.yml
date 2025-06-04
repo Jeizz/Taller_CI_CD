@@ -31,8 +31,8 @@ jobs:
 
     - name: 🐳 Construir y subir imagen de la API
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/api:latest ./Niveles/4/api
-        docker push ${{ secrets.DOCKER_USERNAME }}/api:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/api:104dcd3 ./Niveles/4/api
+        docker push ${{ secrets.DOCKER_USERNAME }}/api:104dcd3
 
     - name: 📂 Configurar acceso a Kubernetes
       run: |
@@ -43,7 +43,7 @@ jobs:
 
     - name: 🧬 Desplegar en Kubernetes
       run: |
-        kubectl set image deployment/api-inferencia api-inferencia=${{ secrets.DOCKER_USERNAME }}/api:latest || true
+        kubectl set image deployment/api-inferencia api-inferencia=${{ secrets.DOCKER_USERNAME }}/api:104dcd3 || true
 
     # - name: 🚀 Aplicar cambios en Kubernetes
     #   run: |
